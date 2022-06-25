@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.middleBox {
+    border: 1.5px solid rgb(62, 0, 65);
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    background-color: rgb(62, 0, 65);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.healthBg {
+    background-color: rgb(125, 0, 0);
+    height:35px; width:100%;
+}
+
+.timer {
+    text-align: center;
+    color: white;
+    font-size: 38px;
+    margin: 0;
+}
+
+.healthBar {
+    position: relative;
+    height: 35px;
+    width: 100%;
+}
+
+.health {
+    position: absolute;
+    background-color: yellow;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.displayText {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.results {
+    color: white;
+}

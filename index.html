@@ -1,0 +1,30 @@
+<body>
+    <!-- main container -->
+    <div class="container">
+        <!-- header -->
+        <div class="header">
+            <!-- player1 health -->
+            <div class="HealthBar" style="display: flex; justify-content: flex-end;">
+                <div class="healthBg" style="border-radius: 10px 0 0 10px;"></div>
+                <div id="playerHp"  class="health" style="float: right; border-radius: 10px 0 0 10px;"></div>
+            </div>
+            <!-- timer -->
+            <div class="middleBox">
+                <h1 class="timer" id="timer">10</h1>
+            </div>
+            <!-- player2 health -->
+            <div class="HealthBar">
+                <div class="healthBg" style="border-radius: 0 10px 10px 0;"></div>
+                <div id="enemyHp" class="health" style=" left: 0; border-radius: 0 10px 10px 0;"></div>
+            </div>
+        </div>
+        <div class="displayText">
+            <h1 class="results"></h1>
+        </div>
+        <canvas></canvas>
+    </div>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="js/utilities.js"></script>
+    <script type="text/javascript" src="js/classes.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
