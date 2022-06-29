@@ -34,16 +34,34 @@ function decreaseTime() {
         winner()
     }
 }
+let Winner
 function winner() {
-    clearTimeout(timerId)
-    if(player.hp == enemy.hp) {
-        document.querySelector('.results').innerHTML = "tie!";
-    }else if(player.hp > enemy.hp) {
-        document.querySelector('.results').innerHTML = "Player1 Wins!";
-    }else if(player.hp < enemy.hp) {
-        document.querySelector('.results').innerHTML = "Player2 Wins!";
+    if(!gameOver) {
+        clearTimeout(timerId)
+        if(player.hp == enemy.hp) {
+            Winner = "tie!";
+        }else if(player.hp > enemy.hp) {
+            Winner = "Samurai Mack Wins!";
+        }else if(player.hp < enemy.hp) {
+            Winner = "Kenji Wins!"
+        }
     }
     gameOver = true
+
+    document.querySelector('.displayBg').style.animation = "slide 1s cubic-bezier(0.6, 0.5, 0, 1) 1";
+    document.querySelector('.displayBg').addEventListener("animationend", playTxtAnim);
+}
+
+function playTxtAnim() {
+    console.log("cabo")
+    document.querySelector('.results').innerHTML = Winner
+    document.querySelector('.txtShadow').innerHTML = Winner
+    document.querySelector('.results').style.animation = "high-font-size 1s cubic-bezier(0, 1, 1, 1) 1, shiny 5s linear infinite"
+    document.querySelector('.txtShadow').style.animation = "high-font-size 1s cubic-bezier(0, 1, 1, 1) 1"
+    document.querySelector('.results').style.fontSize = "var(--fontSize)"
+    document.querySelector('.txtShadow').style.fontSize = "var(--fontSize)"
+    document.querySelector('.displayBg').style.left = "0%"
+    document.querySelector('.displayBg').style.height = "40px"
 }
 
 const key = {
