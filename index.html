@@ -7,19 +7,24 @@
             <div class="HealthBar" style="display: flex; justify-content: flex-end;">
                 <div class="healthBg" style="border-radius: 10px 0 0 10px;"></div>
                 <div id="playerHp"  class="health" style="float: right; border-radius: 10px 0 0 10px;"></div>
+                <h1 class="pName">Samurai Mack</h1>
             </div>
             <!-- timer -->
             <div class="middleBox">
                 <h1 class="timer" id="timer">10</h1>
             </div>
             <!-- player2 health -->
-            <div class="HealthBar">
+            <div class="HealthBar" style="display: flex; justify-content: flex-start;">
                 <div class="healthBg" style="border-radius: 0 10px 10px 0;"></div>
                 <div id="enemyHp" class="health" style=" left: 0; border-radius: 0 10px 10px 0;"></div>
+                <h1 class="pName">Kenji</h1>
             </div>
         </div>
         <div class="displayText">
-            <h1 class="results"></h1>
+            <div class="displayBg">
+                <h1 class="txtShadow"></h1>
+                <h1 class="results"></h1>
+            </div>
         </div>
         <canvas></canvas>
     </div>
@@ -27,4 +32,9 @@
     <script type="text/javascript" src="js/utilities.js"></script>
     <script type="text/javascript" src="js/classes.js"></script>
     <script type="text/javascript" src="index.js"></script>
+
+    <!--  fonte 8-bit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </body>
