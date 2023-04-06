@@ -11,7 +11,7 @@
             </div>
             <!-- timer -->
             <div class="middleBox">
-                <h1 class="timer" id="timer">10</h1>
+                <h1 class="timer" id="timer">--</h1>
             </div>
             <!-- player2 health -->
             <div class="HealthBar" style="display: flex; justify-content: flex-start;">
@@ -20,13 +20,18 @@
                 <h1 class="pName">Kenji</h1>
             </div>
         </div>
+
         <div class="displayText">
             <div class="displayBg">
                 <h1 class="txtShadow"></h1>
                 <h1 class="results"></h1>
             </div>
         </div>
+
         <canvas></canvas>
+        <button class="startBtn" onclick="start()"><h1 class="startTxt">Start!</h1></button>
+        <button class="restartBtn" onclick="restart()"><h1 class="restartTxt">Restart!</h1></button>
+        <h1 class="cd">3</h1>
     </div>
     <link rel="stylesheet" type="text/css" href="index.css">
     <script type="text/javascript" src="js/utilities.js"></script>
