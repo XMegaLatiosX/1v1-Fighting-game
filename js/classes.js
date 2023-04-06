@@ -108,7 +108,10 @@ class Player extends Sprite{
 
     update() {
         if(this.hp > this.currentHp) {
-            this.hp -= 1
+            this.hp--
+            document.querySelector("#" + this.name + "Hp").style.width = this.hp + '%'
+        }else if(this.hp < this.currentHp) {
+            this.hp++
             document.querySelector("#" + this.name + "Hp").style.width = this.hp + '%'
         }
 
@@ -150,9 +153,10 @@ class Player extends Sprite{
     }
 
     takeDmg() {
-        this.currentHp -= 10
-        if(this.currentHp <= 0) {
+        if(started) this.currentHp -= 10
+        if(this.currentHp <= 0 && !gameOver) {
             this.switchSprite("death")
+            winner();
         }else {
             this.switchSprite("dmg")
     }
@@ -165,11 +169,9 @@ class Player extends Sprite{
         this.currentFrame < this.sprites.atk2.frames -1) {return} else
         if(this.image === this.sprites.dmg.image &&
         this.currentFrame < this.sprites.dmg.frames -1) {return} else
-        if(this.image === this.sprites.death.image) {
-            console.log(this.currentFrame, this.sprites.death.frames -1)
+        if(this.image === this.sprites.death.image && joj == false) {
             if(this.currentFrame === this.sprites.death.frames -1) {
                 this.dead = true
-                console.log("oea")
             }
             return
         }
@@ -213,6 +215,14 @@ class Player extends Sprite{
                     this.image = this.sprites.death.image
                     this.framesHold = 10}
                 break
+
+            // case 'death':
+            //     if(this.image !== this.sprites.death.image) {
+            //         this.currentFrame = 0
+            //         this.totalFrames = this.sprites.death.frames
+            //         this.image = this.sprites.death.image
+            //         this.framesHold = 10}
+            //     break
 
             case 'fall':
                 if(this.image !== this.sprites.fall.image) {
