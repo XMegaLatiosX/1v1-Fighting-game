@@ -31,9 +31,65 @@ function decreaseTime() {
         document.querySelector(".timer").innerHTML = time
     }
     if(time === 0){
-        winner()
+        winner();
     }
 }
+
+function start() {
+    started = true
+    joj = false
+    decreaseTime()
+    document.querySelector('.startBtn').style = "display: none;"
+    player.position = {x: 50, y: canvas.height - 95 - 125}
+    enemy.position = {x: canvas.width - 124 - 75, y: canvas.height - 95 - 125}
+}
+function restart() {
+    document.querySelector('.restartBtn').style = "display: none"
+    joj = true
+    document.querySelector('.txtShadow').style.animation = "low-font-size .1s reverse 1"
+    document.querySelector('.results').style.animation = "low-font-size .1s reverse 1"
+    setTimeout(()=> {
+        document.querySelector('.displayBg').style.animation = "reverseslide 1s reverse 1"
+        setTimeout(() => {
+            document.querySelector('.displayBg').style = "height: 40px; background: linear-gradient(to bottom, black, rgb(89, 138, 170) 50%, black 100%);position: absolute; display: flex; align-items: center; justify-content: center; left: 100%; right: 0;"
+            sla = false
+        }, 975)
+        document.querySelector('.results').style = "font-size: 0px"
+        document.querySelector('.txtShadow').style = "font-size: 0px"
+    }, 101)
+    player.currentHp = 100
+    enemy.currentHp = 100
+    player.dead = false
+    enemy.dead = false
+    time = 61
+    started = false
+    gameOver = false
+    setTimeout(countDown, 1100);
+}
+
+let times = 0
+function countDown() {
+    document.querySelector('.cd').style = "display: block"
+    setTimeout(() => {
+        document.querySelector('.cd').innerHTML = "2"
+    }, 1000);
+    setTimeout(() => {
+        document.querySelector('.cd').innerHTML = "1"
+    }, 2000);
+    setTimeout(() => {
+        decreaseTime()
+        document.querySelector('.cd').innerHTML = "GO!"
+        player.position = {x: 50, y: canvas.height - 95 - 125}
+        enemy.position = {x: canvas.width - 124 - 75, y: canvas.height - 95 - 125}
+        started = true
+        joj = false
+    }, 2999);
+    document.querySelector('.cd').addEventListener('animationend', () => {
+        document.querySelector('.cd').style = "font-size: 0px"
+        document.querySelector('.cd').innerHTML = "3"
+    })
+}
+
 let Winner
 function winner() {
     if(!gameOver) {
@@ -46,14 +102,16 @@ function winner() {
             Winner = "Kenji Wins!"
         }
     }
-    gameOver = true
-
     document.querySelector('.displayBg').style.animation = "slide 1s cubic-bezier(0.6, 0.5, 0, 1) 1";
     document.querySelector('.displayBg').addEventListener("animationend", playTxtAnim);
-}
+    if(!joj) gameOver = true
 
-function playTxtAnim() {
-    console.log("cabo")
+}
+let sla = false
+function playTxtAnim() {if(sla) return
+    sla = true
+    document.querySelector('.restartBtn').style = "display: inline-block"
+    console.log("cabo // "+gameOver)
     document.querySelector('.results').innerHTML = Winner
     document.querySelector('.txtShadow').innerHTML = Winner
     document.querySelector('.results').style.animation = "high-font-size 1s cubic-bezier(0, 1, 1, 1) 1, shiny 5s linear infinite"
