@@ -1,10 +1,13 @@
 //pega o canvas
 const canvas    = document.querySelector('canvas');
+//essa é a tela do nosso canvas
 const c         = canvas.getContext("2d");
 const gravity   = 0.5;
+let started = false;
 let gameOver    = false
 canvas.width    = 1024;
 canvas.height   = 576;
+let joj = false
 
 
 const background = new Sprite({
@@ -18,6 +21,7 @@ const shop = new Sprite({
     frames:     6
 })
 
+const player1 = {speed: 0.15}
 //criando uma classe pro player
 const player = new Player({
     position:   {x: 50, y: canvas.height - 95 - 125},
@@ -33,6 +37,7 @@ const player = new Player({
         atk1:   {imgSrc:"./assets/samuraiMack/Attack1.png", frames: 6},
         atk2:   {imgSrc:"./assets/samuraiMack/Attack2.png", frames: 6},
         death:  {imgSrc:"./assets/samuraiMack/Death.png", frames: 6},
+        // revive:  {imgSrc:"./assets/samuraiMack/Revive.png", frames: 6},
         fall:   {imgSrc:"./assets/samuraiMack/Fall.png", frames: 2},
         jump:   {imgSrc:"./assets/samuraiMack/Jump.png", frames: 2},
         dmg:    {imgSrc:"./assets/samuraiMack/Take Hit - white silhouette.png", frames: 4}
@@ -50,7 +55,7 @@ const player = new Player({
 
 //criando uma classe pro player2
 const enemy = new Player({
-    position:   {x: canvas.width - 124 - 75, y: canvas.height - 95 - 175},
+    position:   {x: canvas.width - 124 - 75, y: canvas.height - 95 - 125},
     velocity:   {x:0, y:0},
     color:      "red",
     imgSrc:     "./assets/kenji/Idle.png",
@@ -63,6 +68,7 @@ const enemy = new Player({
         atk1:   {imgSrc:"./assets/kenji/Attack1.png", frames: 4},
         atk2:   {imgSrc:"./assets/kenji/Attack2.png", frames: 4},
         death:  {imgSrc:"./assets/kenji/Death.png", frames: 7},
+        // revive:  {imgSrc:"./assets/kenji/Revive.png", frames: 7},
         fall:   {imgSrc:"./assets/kenji/Fall.png", frames: 2},
         jump:   {imgSrc:"./assets/kenji/Jump.png", frames: 2},
         dmg:    {imgSrc:"./assets/kenji/Take hit.png", frames: 3}
@@ -78,7 +84,7 @@ const enemy = new Player({
     name: 'enemy'
 })
 
-decreaseTime()
+
 
 //---------------------------------------------------ANIMATE---------------------------------------------------//
 function animate() {
@@ -128,9 +134,6 @@ function animate() {
     if(rectCollision({rect1: enemy, rect2: player, firstStrike: player.firstStrike}) && enemy.currentFrame == enemy.atkFrame) {
         enemy.isAttacking = false
         player.takeDmg()
-    }
-    if(player.hp == 0 || enemy.hp == 0) {
-        winner()
     }
 }
 //chama a função todo frame
